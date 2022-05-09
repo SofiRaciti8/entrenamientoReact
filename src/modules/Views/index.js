@@ -5,9 +5,11 @@ import Proyects from "../Proyects"
 import Search from "../Search"
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
+import Header from "../../components/Header"
 
 const ViewsContainer = () =>
     <>
+    <Header />
     <Navbar />
     <Routes>
         <Route path="/" element={<Home />} />
