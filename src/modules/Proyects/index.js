@@ -5,12 +5,12 @@ import { CardSection } from "../../components/ProjectCard/styles"
 import {Spinner} from "../../components/Spinner/styles"
 import { data } from "../../utils/data"
 
-const Proyects = () => {
+const Proyects = ({filterProjects = data.projects}) => {
   const [proyects, setProyects] = useState(null)
   
   useEffect(() => {
-    setTimeout(() => setProyects(data.projects), 1000);
-  }, [])
+    setTimeout(() => setProyects(filterProjects), 1000);
+  }, [filterProjects])
 
   if (!proyects) return <Spinner />
   return (
