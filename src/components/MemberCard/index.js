@@ -1,9 +1,9 @@
 import { Card } from "../ProjectCard/styles"
 
-const MemberCard = ({firstname, lastname}) => (
+const MemberCard = ({firstname, lastname, nombreRol}) => (
   <Card>
     <span>
-      {firstname} {lastname}
+      {firstname} {lastname} {nombreRol}
     </span>
   </Card>
 )
