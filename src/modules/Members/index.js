@@ -1,41 +1,28 @@
 import React, {useEffect, useState} from "react"
 import MemberCard from "../../components/MemberCard"
 import {CardSection} from "../../components/ProjectCard/styles"
-import {Spinner} from "../../components/Spinner/styles"
+import { Spinner } from "../../components/Spinner/styles"
+import { fetchMembers, fetchRoles } from "../../api/funciones"
 
 const Members = () => {
   const [members, setMembers] = useState(null)
   const [roles, setRoles] = useState(null)
 
+  const getMembers = async () => {
+    const results = await fetchMembers()
+    setMembers(results)
+  }
+
+  const getRoles = async () => {
+    const resultsRoles = await fetchRoles()
+    setRoles(resultsRoles)
+    console.log(resultsRoles)
+  }
+
   useEffect(() => {
-    fetchRoles()
-    fetchData()
+    getRoles()
+    getMembers()
   }, [])
-
-  const fetchData = async () => {
-    try {
-      const result = await fetch(
-        "https://tswwqpqg6i.execute-api.us-east-1.amazonaws.com/Test/members"
-      ).then((result) => result.json())
-      setMembers(result)
-      return result
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  const fetchRoles = async () => {
-    try {
-      const resultRoles = await fetch(
-        "https://tswwqpqg6i.execute-api.us-east-1.amazonaws.com/Test/roles"
-      ).then((resultRoles) => resultRoles.json())
-      setRoles(resultRoles)
-      console.log(resultRoles)
-      return resultRoles
-    } catch (error) {
-      console.error(error)
-    }
-  }
 
   if (!members) return <Spinner />
   return (

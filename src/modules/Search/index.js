@@ -1,14 +1,24 @@
-import React, {useState} from "react"
-import {data} from "../../utils/data"
+import React, {useState, useEffect} from "react"
 import Members from "../Members"
 import Proyects from "../Proyects"
+import {fetchData} from "../../api/funciones"
 
 const Search = () => {
-  const [proyects, setProyects] = useState(data.projects)
+  const [proyects, setProyects] = useState(null)
   const [search, setSearch] = useState("")
 
-  const findProjects = (value) => {
-    let results = data.projects.filter((dato) =>
+  const getProyects = async () => {
+    const results = await fetchData()
+    setProyects(results)
+  }
+
+  useEffect(() => {
+    getProyects()
+  }, [])
+
+  const findProjects = async (value) => {
+    let data = await fetchData()
+    let results = data.filter((dato) =>
       dato.name.toLowerCase().includes(value.toLowerCase())
     )
     setProyects(results)

@@ -1,34 +1,32 @@
 import React, {useEffect, useState} from "react"
 import ProjectCard from "../../components/ProjectCard"
 import {CardSection} from "../../components/ProjectCard/styles"
+import {fetchData} from "../../api/funciones"
+import { Spinner } from "../../components/Spinner/styles"
+import { data } from "../../utils/data";
 
-import {Spinner} from "../../components/Spinner/styles"
-import {data} from "../../utils/data"
 
-const Proyects = ({filterProjects = data.projects}) => {
-  const [proyects, setProyects] = useState(null)
+const Proyects = ({filterProjects = null}) => {
+  const [proyects, setProyects] = useState(filterProjects)
+
+  const getProyects = async () => {
+    const results = await fetchData()
+    setProyects(results)
+  }
 
   useEffect(() => {
-    fetchData()
+    if (!filterProjects) getProyects()
   }, [])
 
-  const fetchData = async () => {
-    try {
-      const result = await fetch(
-        "https://tswwqpqg6i.execute-api.us-east-1.amazonaws.com/Test/projects"
-      ).then((result) => result.json())
-      setProyects(result)
-      return result
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  useEffect(() => {
+    setProyects(filterProjects)
+  }, [filterProjects])
 
   if (!proyects) return <Spinner />
   return (
     <CardSection>
       {proyects.map((proyect, index) => (
-        <ProjectCard name={proyect.name} imgSrc={proyect.img} key={index} />
+        <ProjectCard name={proyect.name} imgSrc={data[proyect.img]} key={index} />
       ))}
     </CardSection>
   )
