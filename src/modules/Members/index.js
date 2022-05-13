@@ -24,7 +24,7 @@ const Members = () => {
     getMembers()
   }, [])
 
-  if (!members) return <Spinner />
+  if (!members || !roles) return <Spinner />
   return (
     <CardSection>
       {members.map((member, index) => (

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-    background: #9c9c9c;
-    border: 5px solid darkblue;
+    background: ${(props) => props.theme.secondary};
+    border: 5px solid ${(props) => props.theme.primary};
     width: 500px;
     margin: 1%;
 `
