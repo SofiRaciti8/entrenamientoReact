@@ -1,4 +1,4 @@
-export const fetchData = async () => {
+export const fetchProjects = async () => {
   try {
     const result = await fetch(
       "https://tswwqpqg6i.execute-api.us-east-1.amazonaws.com/Test/projects"

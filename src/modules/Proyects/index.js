@@ -1,26 +1,17 @@
-import React, {useEffect, useState} from "react"
+import React, {useContext, useEffect, useState} from "react"
 import ProjectCard from "../../components/ProjectCard"
 import {CardSection} from "../../components/ProjectCard/styles"
-import {fetchData} from "../../api/funciones"
-import { Spinner } from "../../components/Spinner/styles"
-import { data } from "../../utils/data";
-
+import {Spinner} from "../../components/Spinner/styles"
+import {data} from "../../utils/data"
+import {AppContext} from "../../contexts/AppStore"
 
 const Proyects = ({filterProjects = null}) => {
+  const {state} = useContext(AppContext)
   const [proyects, setProyects] = useState(filterProjects)
 
-  const getProyects = async () => {
-    const results = await fetchData()
-    setProyects(results)
-  }
-
   useEffect(() => {
-    if (!filterProjects) getProyects()
-  }, [])
-
-  useEffect(() => {
-    setProyects(filterProjects)
-  }, [filterProjects])
+    !filterProjects ? setProyects(state.projects) : setProyects(filterProjects)
+  }, [filterProjects, state.projects])
 
   if (!proyects) return <Spinner />
   return (

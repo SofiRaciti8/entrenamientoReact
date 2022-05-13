@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react"
 import Members from "../Members"
 import Proyects from "../Proyects"
-import {fetchData} from "../../api/funciones"
+import {fetchProjects} from "../../api/funciones"
 
 const Search = () => {
   const [proyects, setProyects] = useState(null)
   const [search, setSearch] = useState("")
 
   const getProyects = async () => {
-    const results = await fetchData()
+    const results = await fetchProjects()
     setProyects(results)
   }
 

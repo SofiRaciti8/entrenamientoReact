@@ -12,16 +12,16 @@ import cronos from "../assets/projects/cronos-color.svg";
 import afalp from "../assets/projects/afalp-color.svg";
 
 export const data = {
-    Culbot : culbot,
-    Aero : aero,
-    Tiendificar: tiendificar,
-    Helvaci: helvaci,
-    Teytu: teytu,
-    AGS: ags,
-    Medicina: medfetal,
-    Banda: banda,
-    House: hoc,
-    Briales: briales,
-    Cronos: cronos,
-    AFALP : afalp,
+    culbot : culbot,
+    aero : aero,
+    tiendificar: tiendificar,
+    helvaci: helvaci,
+    teytu: teytu,
+    ags: ags,
+    medfetal: medfetal,
+    banda: banda,
+    hoc: hoc,
+    briales: briales,
+    cronos: cronos,
+    afalp : afalp,
 };
