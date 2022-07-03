@@ -1,42 +1,45 @@
-import React, {useEffect, useState} from "react"
+import React, {useContext, useEffect, useState} from "react"
 import MemberCard from "../../components/MemberCard"
-import {CardSection} from "../../components/ProjectCard/styles"
-import { Spinner } from "../../components/Spinner/styles"
-import { fetchMembers, fetchRoles } from "../../api/funciones"
+import {CardSection} from "../../Styles/styles"
+import {Spinner} from "../../components/Spinner/styles"
+import {AppContext} from "../../contexts/AppStore"
+import {MembersContent} from "./styles"
+import Modal from "../../components/Modal"
+import { ButtonN } from "../../Styles/styles"
 
-const Members = () => {
-  const [members, setMembers] = useState(null)
-  const [roles, setRoles] = useState(null)
-
-  const getMembers = async () => {
-    const results = await fetchMembers()
-    setMembers(results)
-  }
-
-  const getRoles = async () => {
-    const resultsRoles = await fetchRoles()
-    setRoles(resultsRoles)
-    console.log(resultsRoles)
-  }
+const Members = ({filterMembers = null}) => {
+  const {state} = useContext(AppContext)
+  const [members, setMembers] = useState(filterMembers)
+  const [modalVisible, setModalVisible] = useState()
+  const isMembers = window.location.pathname.includes("/members");  
+  
 
   useEffect(() => {
-    getRoles()
-    getMembers()
-  }, [])
+    !filterMembers ? setMembers(state.members) : setMembers(filterMembers)
+    console.log(members)
+  }, [filterMembers, state.members])
 
-  if (!members || !roles) return <Spinner />
+  const closeModal = () => {
+    setModalVisible(false)
+  }
+
+  if (!members) return <Spinner />
   return (
-    <CardSection>
-      {members.map((member, index) => (
-        <MemberCard
-          firstname={member.firstname}
-          lastname={member.lastname}
-          nombreRol={roles[2].label}
-          key={index}
-        />
-      ))}
-    </CardSection>
+    <MembersContent>
+      {isMembers && <ButtonN onClick={setModalVisible}>Nuevo</ButtonN>}
+      {modalVisible && <Modal close={closeModal} />}
+      <CardSection>
+        {members &&
+          members.map((member, index) => (
+            <MemberCard
+              firstname={member.firstname}
+              lastname={member.lastname}
+              //nombreRol={member.role_id}
+              key={index}
+            />
+          ))}
+      </CardSection>
+    </MembersContent>
   )
 }
-
 export default Members

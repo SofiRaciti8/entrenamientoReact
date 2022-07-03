@@ -1,7 +1,7 @@
 import React from "react"
 import {useContext} from "react"
 import {ThemeContext} from "../../contexts/ThemeStore"
-import {StyleNavbar, StyledSun, StyledMoon} from "./styles"
+import {StyleNavbar, StyledSun, StyledMoon,StyledTitulo} from "./styles"
 
 const Navbar = () => {
   const {theme, switchTheme} = useContext(ThemeContext)
@@ -12,7 +12,7 @@ const Navbar = () => {
       ) : (
         <StyledMoon size={32} onClick={() => switchTheme("dark")} />
       )}
-      <span>Snappler</span>
+      <StyledTitulo>Snappler</StyledTitulo>
     </StyleNavbar>
   )
 }

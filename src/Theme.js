@@ -4,14 +4,14 @@ import {ThemeContext} from "./contexts/ThemeStore"
 
 const themes = {
   dark: {
-    primary: "#fbfbfb",
-    secondary: "#293A5C",
+    primary: "#e6e6e6",
+    secondary: "#fbfbfb",
     background: "#5a6d93",
   },
   light: {
-    primary: "#293A5C",
+    primary: "#5e5353",
     secondary: "#fbfbfb",
-    background: "#dedede",
+    background: "#fff",
   },
 }
 

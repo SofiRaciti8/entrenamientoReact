@@ -1,4 +1,4 @@
-import { Card } from "../ProjectCard/styles"
+import { Card } from "../../Styles/styles"
 
 const MemberCard = ({firstname, lastname, nombreRol}) => (
   <Card>

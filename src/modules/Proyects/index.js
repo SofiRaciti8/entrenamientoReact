@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react"
 import ProjectCard from "../../components/ProjectCard"
-import {CardSection} from "../../components/ProjectCard/styles"
+import {CardSection} from "../../Styles/styles"
 import {Spinner} from "../../components/Spinner/styles"
 import {data} from "../../utils/data"
 import {AppContext} from "../../contexts/AppStore"

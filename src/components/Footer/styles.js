@@ -1,13 +1,16 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const FooterSection = styled.footer`
-    text-alguin: right;
+  background: #fbfbfb;
+  height: 2rem;
 `
 
 export const FooterDescripcion = styled.span`
-    color:#888;
+  color: #888;
+  margin: 1rem;
 `
 
 export const Anio = styled.p`
-    float:right;
+  float: right;
+  margin-right: 1rem;
 `

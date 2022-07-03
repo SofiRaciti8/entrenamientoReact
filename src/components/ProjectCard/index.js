@@ -1,4 +1,4 @@
-import { Card } from "./styles";
+import { Card } from "../../Styles/styles"
 
 const ProjectCard = ({name, imgSrc}) => (
   <Card>
